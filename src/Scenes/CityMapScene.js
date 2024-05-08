@@ -6,10 +6,11 @@ class CityMap extends Phaser.Scene {
     constructor() {
         super("cityMap");
         this.waveConfig = [
-            {enemyCount: 5, infectedCount: 5, spawnInterval: 1500},
-            {enemyCount: 10, infectedCount: 15, spawnInterval: 1500},
-            {enemyCount: 20, infectedCount: 20, spawnInterval: 1500},
+            {enemyCount: 0, infectedCount: 0, spawnInterval: 15}, //5 5 1500
+            {enemyCount: 0, infectedCount: 0, spawnInterval: 15}, //10 15 1500
+            {enemyCount: 0, infectedCount: 0, spawnInterval: 15}, //20 20 1500
         ];
+        this.boss = {sprite: {}};  // Sprite object to hold boss parts
     }
 
     preload() {
@@ -25,6 +26,8 @@ class CityMap extends Phaser.Scene {
         this.load.image("hpEmpty", "heartEmpty.png");
         this.load.image("hpHalf", "heartHalf.png");
         this.load.image("hpFull", "heartFull.png");
+
+        this.load.atlasXML("monsterParts", "spritesheet_default.png", "spritesheet_default.xml");
 
 
         // Set path for audio files
@@ -127,8 +130,7 @@ class CityMap extends Phaser.Scene {
 
         this.hearts = this.add.group();
 
-        this.createHearts(this.playerHP);
-
+        this.createHearts(this.playerHP);        
 
         document.getElementById('description').innerHTML = '<h2>Welcome to CityMap</h2>'
 
@@ -251,7 +253,7 @@ class CityMap extends Phaser.Scene {
                         this.currentWave++;
                         this.spawnTimer.remove();
                         this.time.addEvent({
-                            delay: 15000,
+                            delay: 15, // 15000
                             callback: this.startSpawning,
                             callbackScope: this
                         });
@@ -262,12 +264,7 @@ class CityMap extends Phaser.Scene {
         }
         // after all waves are done, end the game go to next scene after 15 seconds
         else {
-            this.time.addEvent({
-                delay: 30000,
-                callback: () => {
-                    this.scene.start('gameOver');
-                }
-            });
+            this.spawnBoss();
         }
   
     }
@@ -332,6 +329,25 @@ class CityMap extends Phaser.Scene {
         //     callback: () => this.spawnEnemy(),
         //     delay: 1000
         // })
+    }
+
+    spawnBoss(){
+        let boss = this.boss;
+        
+        boss.bodyX = 320;
+        boss.bodyY = 250;
+
+        boss.sprite.rightleg = this.add.sprite(boss.bodyX+50, boss.bodyY+110, "monsterParts", "leg_yellowC.png");
+        boss.sprite.leftleg = this.add.sprite(boss.bodyX-50, boss.bodyY+110, "monsterParts", "leg_yellowC.png");
+        boss.sprite.leftleg.flipX = true;
+        boss.sprite.body = this.add.sprite(boss.bodyX, boss.bodyY, "monsterParts", "body_yellowA.png");
+        boss.sprite.firsteye = this.add.sprite(boss.bodyX-45, boss.bodyY-25, "monsterParts", "eye_human_red.png");
+        boss.sprite.secondeye = this.add.sprite(boss.bodyX+45, boss.bodyY-25, "monsterParts", "eye_human_red.png");
+        boss.sprite.thirdeye = this.add.sprite(boss.bodyX, boss.bodyY-45, "monsterParts", "eye_human_red.png");
+        boss.sprite.firsteye.setScale(0.7);
+        boss.sprite.secondeye.setScale(0.7);
+        boss.sprite.thirdeye.setScale(0.7);
+        boss.sprite.fangs = this.add.sprite(boss.bodyX, boss.bodyY + 40, "monsterParts", "mouthF.png");
     }
 
     fireEnemyBullet(enemy) {

@@ -14,7 +14,7 @@ let config = {
     fps: { forceSetTimeOut: true, target: 60 },
     width: 640,
     height: 800,
-    scene: [StartScene, CityMap, GameOver],
+    scene: [StartScene, CityMap, BossMap, GameOver],
     physics: {
         default: 'arcade',
         arcade: {
