@@ -12,4 +12,9 @@ Try to beat your high score!
 
 Credits:
 Kenny Assets: https://kenney.nl/assets
+https://www.dynetisgames.com/2018/10/28/how-save-load-player-progress-localstorage/
+https://frostyfreeze.itch.io/pixel-bitmap-fonts-png-xml (For Font)
+Phaser API Documentation: https://newdocs.phaser.io/docs/3.80.0
+Alexey Lugovoy Youtube Channel: https://www.youtube.com/watch?v=TPu7PXxg5-8
+WClarkson Youtube: https://www.youtube.com/watch?v=96kUkPgAiJA
 
