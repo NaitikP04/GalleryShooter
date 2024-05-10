@@ -190,8 +190,6 @@ class CityMap extends Phaser.Scene {
         //     this.drawLine();
         // });
 
-        // document.getElementById('description').innerHTML = '<h2>Welcome to CityMap</h2>'
-
     }
     
     // // Draws an x mark at every point along the spline.
