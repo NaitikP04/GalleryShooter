@@ -190,7 +190,7 @@ class CityMap extends Phaser.Scene {
         //     this.drawLine();
         // });
 
-        document.getElementById('description').innerHTML = '<h2>Welcome to CityMap</h2>'
+        // document.getElementById('description').innerHTML = '<h2>Welcome to CityMap</h2>'
 
     }
     
