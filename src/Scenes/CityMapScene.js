@@ -6,9 +6,9 @@
         constructor() {
             super("cityMap");
             this.waveConfig = [
-                {enemyCount: 0, infectedCount: 0, spawnInterval: 15}, //5 5 1500
-                {enemyCount: 0, infectedCount: 0, spawnInterval: 15}, //10 15 1500
-                {enemyCount: 0, infectedCount: 0, spawnInterval: 15}, //20 20 1500
+                {enemyCount: 5, infectedCount: 5, spawnInterval: 1500}, //5 5 1500
+                {enemyCount: 10, infectedCount: 15, spawnInterval: 1500}, //10 15 1500
+                {enemyCount: 20, infectedCount: 20, spawnInterval: 1500}, //20 20 1500
             ];
             this.boss = {sprite: {}};  // Sprite object to hold boss parts
         }
@@ -253,7 +253,7 @@
                             this.currentWave++;
                             this.spawnTimer.remove();
                             this.time.addEvent({
-                                delay: 15, // 15000
+                                delay: 15000, // 15000
                                 callback: this.startSpawning,
                                 callbackScope: this
                             });
